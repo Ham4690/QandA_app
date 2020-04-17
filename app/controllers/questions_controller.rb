@@ -34,6 +34,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to root_path, notice: "Delete [#{params[:id]}] success!"
+  end
+
   private
     def question_params
       params.require(:question).permit(:name, :title, :content)
